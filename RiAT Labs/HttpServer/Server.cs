@@ -36,8 +36,9 @@ namespace HttpServer
             while (httpListener.IsListening)
             {
                 var context = httpListener.GetContext();
-                String path = context.Request.Url.ToString();
-                switch (path)
+                HttpListenerRequest request = context.Request;
+
+                switch (request.Url.ToString())
                 {
                     case "/Ping":
                         Ping(context);

@@ -13,15 +13,17 @@ namespace HttpClient
         {
             _WebClient = new WebClient();
             Url = port != "" ? $"{url}:{port}" : $"{url}";
+            Url = $"{Url}/study";
         }
 
         public string Ping()
         {
             try
             {
-                Console.WriteLine($"Connecting to {Url}");
+                string connection = $"{Url}/Ping";
+                Console.WriteLine($"Connecting to {connection}");
                 Console.Write("Ping...");
-                byte[] inputData = _WebClient.DownloadData(Url + "/Ping");
+                byte[] inputData = _WebClient.DownloadData(connection);
                 string inputDataStr = Encoding.UTF8.GetString(inputData);
                 Console.Write("Pong!");
                 return inputDataStr;
